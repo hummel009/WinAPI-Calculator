@@ -31,7 +31,7 @@ private const val BUTTON_SQUARE_ROOT_ID: Int = 22
 private const val BUTTON_UNARY_MINUS_ID: Int = 23
 
 private const val DEFAULT_CAPACITY: Int = 100
-private const val ERROR = "Error!"
+private const val ERROR: String = "Error!"
 
 private val storage: MutableList<String> = ArrayList()
 private val factorial: Array<Int> = arrayOf(1, 1, 2, 6, 24, 120, 720, 5040, 40320, 362880, 3628800, 39916800, 479001600)
