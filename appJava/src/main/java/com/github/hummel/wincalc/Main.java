@@ -46,8 +46,8 @@ public class Main {
 	private static WinDef.HWND field;
 
 	public static void main(String[] args) {
-		var className = "HummelCalculator";
-		var windowTitle = "WinAPI";
+		var className = "Hummel009's Calculator";
+		var windowTitle = "Hummel009's Calculator";
 
 		var windowClass = new WinUser.WNDCLASSEX();
 		windowClass.cbSize = windowClass.size();

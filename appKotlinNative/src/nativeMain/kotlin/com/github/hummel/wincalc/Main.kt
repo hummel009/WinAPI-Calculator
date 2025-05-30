@@ -40,8 +40,8 @@ private lateinit var field: HWND
 
 fun main() {
 	memScoped {
-		val className = "HummelCalculator"
-		val windowTitle = "WinAPI"
+		val className = "Hummel009's Calculator"
+		val windowTitle = "Hummel009's Calculator"
 
 		val windowClass = alloc<WNDCLASSW>()
 		windowClass.style = 0u

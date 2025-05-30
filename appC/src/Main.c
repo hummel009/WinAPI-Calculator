@@ -178,8 +178,8 @@ LRESULT wndProc(HWND window, UINT msg, WPARAM wParam, LPARAM lParam)
 
 int main()
 {
-	const char *className = "HummelCalculator";
-	const char *windowTitle = "WinAPI";
+	const char *className = "Hummel009's Calculator";
+	const char *windowTitle = "Hummel009's Calculator";
 
 	WNDCLASSA windowClass;
 	windowClass.style = 0;

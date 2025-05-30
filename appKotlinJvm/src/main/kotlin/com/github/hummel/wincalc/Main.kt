@@ -44,8 +44,8 @@ private val factorial: Array<Int> = arrayOf(1, 1, 2, 6, 24, 120, 720, 5040, 4032
 private lateinit var field: WinDef.HWND
 
 fun main() {
-	val className = "HummelCalculator"
-	val windowTitle = "WinAPI"
+	val className = "Hummel009's Calculator"
+	val windowTitle = "Hummel009's Calculator"
 
 	val windowClass = WinUser.WNDCLASSEX()
 	windowClass.cbSize = windowClass.size()

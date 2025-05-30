@@ -609,8 +609,8 @@ endp
 
 section '.data' data readable writeable
 
-  className        db 'HummelCalculator', 0
-  windowTitle      db 'WinAPI', 0
+  className        db 'Hummel009''s Calculator', 0
+  windowTitle      db 'Hummel009''s Calculator', 0
   buttonClassName  db 'BUTTON', 0      
   fieldClassName   db 'STATIC', 0      
   fieldText        db '', 0     

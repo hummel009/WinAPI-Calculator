@@ -50,8 +50,8 @@ namespace Hummel
 
 		public static void Main()
 		{
-			var className = "HummelCalculator";
-			var windowTitle = "WinAPI";
+			var className = "Hummel009's Calculator";
+			var windowTitle = "Hummel009's Calculator";
 
 			var windowClass = new WNDCLASS
 			{
