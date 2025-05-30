@@ -9,8 +9,7 @@
 [![Technical Debt][technical_debt_badge]][technical_debt_link]
 [![Lines of Code][lines_of_code_badge]][lines_of_code_link]
 
-Простейший графический калькулятор на WinAPI. Реализован на С, С++, C#, Java, Kotlin (JVM), Kotlin (Native), FASM (x86).
-Все эти языки либо напрямую совместимы с WinAPI, либо имеют возможность обращаться к WinAPI через обёртки.
+Калькулятор на WinAPI.
 
 <!----------------------------------------------------------------------------->
 
