@@ -9,7 +9,7 @@
 [![Technical Debt][technical_debt_badge]][technical_debt_link]
 [![Lines of Code][lines_of_code_badge]][lines_of_code_link]
 
-Калькулятор на WinAPI.
+Калькулятор с использованием WinAPI на разных языках программирования.
 
 <!----------------------------------------------------------------------------->
 
