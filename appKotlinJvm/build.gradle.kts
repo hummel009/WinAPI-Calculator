@@ -13,8 +13,10 @@ val embed: Configuration by configurations.creating
 
 dependencies {
 	embed("org.jetbrains.kotlin:kotlin-stdlib:latest.release")
+
 	embed("net.java.dev.jna:jna:latest.release")
 	embed("net.java.dev.jna:jna-platform:latest.release")
+
 	implementation("net.java.dev.jna:jna:latest.release")
 	implementation("net.java.dev.jna:jna-platform:latest.release")
 }
