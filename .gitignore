@@ -1,2 +1,13 @@
-.gradle
-.idea
+### Gradle ###
+/.gradle/
+/**/build/
+
+### IntelliJ IDEA ###
+/.idea/
+
+### Kotlin ###
+/.kotlin/
+
+### Project ###
+/**/output/
+/**/output.*
