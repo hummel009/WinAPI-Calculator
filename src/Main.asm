@@ -11,7 +11,9 @@ include 'IntToASCII.asm'
 section '.text' code readable executable
 
 start:
-	invoke RegisterClass, wc
+	invoke SetProcessDPIAware
+
+	invoke RegisterClassA, wc
 
 	invoke GetSystemMetrics, SM_CXSCREEN
 	mov [screenWidth], eax
@@ -29,16 +31,16 @@ start:
 	sar eax, 1 ; divide on 2
 	mov [windowY], eax
 
-	invoke CreateWindowEx, 0, className, windowTitle, WS_VISIBLE + WS_CAPTION + WS_SYSMENU, [windowX], [windowY], [windowWidth], [windowHeight], NULL, NULL, NULL, NULL
+	invoke CreateWindowExA, 0, className, windowTitle, WS_VISIBLE + WS_CAPTION + WS_SYSMENU, [windowX], [windowY], [windowWidth], [windowHeight], NULL, NULL, NULL, NULL
 
 ; loop
 cycle:
-	invoke GetMessage, msg, NULL, 0, 0
+	invoke GetMessageA, msg, NULL, 0, 0
 	cmp eax, 0
 	je exit
 
 	invoke TranslateMessage, msg
-	invoke DispatchMessage, msg
+	invoke DispatchMessageA, msg
 
 	jmp cycle
 ; end loop
@@ -57,36 +59,36 @@ proc WindowProc uses ebx esi edi, window, msg, wParam, lParam
 	je .wmdestroy
 
 .defwindowproc:
-	invoke DefWindowProc, [window], [msg], [wParam], [lParam]
+	invoke DefWindowProcA, [window], [msg], [wParam], [lParam]
 	jmp .finish
 
 .wmcreate:
 	stdcall RegisterField, [window]
 
-	stdcall RegisterButtonD, [window], 0, buttonP, 0 + 1, 60 * 1 - 10
-	stdcall RegisterButtonD, [window], 1, buttonE, 60 + 1, 60 * 1 - 10
-	stdcall RegisterButton, [window], 2, buttonC, 120 + 1, 60 * 1 - 10
-	stdcall RegisterButton, [window], 3, buttonFactorial, 180 + 1, 60 * 1 - 10
-	stdcall RegisterButtonD, [window], 4, buttonInverse, 0 + 1, 60 * 2 - 10
-	stdcall RegisterButton, [window], 5, buttonSquare, 60 + 1, 60 * 2 - 10
-	stdcall RegisterButtonD, [window], 6, buttonSquareRoot, 120 + 1, 60 * 2 - 10
-	stdcall RegisterButton, [window], 7, buttonDivide, 180 + 1, 60 * 2 - 10
-	stdcall RegisterButton, [window], 8, button7, 0 + 1, 60 * 3 - 10
-	stdcall RegisterButton, [window], 9, button8, 60 + 1, 60 * 3 - 10
-	stdcall RegisterButton, [window], 10, button9, 120 + 1, 60 * 3 - 10
-	stdcall RegisterButton, [window], 11, buttonMultiple, 180 + 1, 60 * 3 - 10
-	stdcall RegisterButton, [window], 12, button4, 0 + 1, 60 * 4 - 10
-	stdcall RegisterButton, [window], 13, button5, 60 + 1, 60 * 4 - 10
-	stdcall RegisterButton, [window], 14, button6, 120 + 1, 60 * 4 - 10
-	stdcall RegisterButton, [window], 15, buttonMinus, 180 + 1, 60 * 4 - 10
-	stdcall RegisterButton, [window], 16, button1, 0 + 1, 60 * 5 - 10
-	stdcall RegisterButton, [window], 17, button2, 60 + 1, 60 * 5 - 10
-	stdcall RegisterButton, [window], 18, button3, 120 + 1, 60 * 5 - 10
-	stdcall RegisterButton, [window], 19, buttonPlus, 180 + 1, 60 * 5 - 10
-	stdcall RegisterButton, [window], 20, buttonUnaryMinus, 0 + 1, 60 * 6 - 10
-	stdcall RegisterButton, [window], 21, button0, 60 + 1, 60 * 6 - 10
-	stdcall RegisterButtonD, [window], 22, buttonDot, 120 + 1, 60 * 6 - 10
-	stdcall RegisterButton, [window], 23, buttonEquals, 180 + 1, 60 * 6 - 10
+	stdcall RegisterButtonD, [window], 0, buttonP, 0 + 1, 90 * 1 - 10
+	stdcall RegisterButtonD, [window], 1, buttonE, 90 + 1, 90 * 1 - 10
+	stdcall RegisterButton, [window], 2, buttonC, 90 * 2 + 1, 90 * 1 - 10
+	stdcall RegisterButton, [window], 3, buttonFactorial, 90 * 3 + 1, 90 * 1 - 10
+	stdcall RegisterButtonD, [window], 4, buttonInverse, 0 + 1, 90 * 2 - 10
+	stdcall RegisterButton, [window], 5, buttonSquare, 90 + 1, 90 * 2 - 10
+	stdcall RegisterButtonD, [window], 6, buttonSquareRoot, 90 * 2 + 1, 90 * 2 - 10
+	stdcall RegisterButton, [window], 7, buttonDivide, 90 * 3 + 1, 90 * 2 - 10
+	stdcall RegisterButton, [window], 8, button7, 0 + 1, 90 * 3 - 10
+	stdcall RegisterButton, [window], 9, button8, 90 + 1, 90 * 3 - 10
+	stdcall RegisterButton, [window], 10, button9, 90 * 2 + 1, 90 * 3 - 10
+	stdcall RegisterButton, [window], 11, buttonMultiple, 90 * 3 + 1, 90 * 3 - 10
+	stdcall RegisterButton, [window], 12, button4, 0 + 1, 90 * 4 - 10
+	stdcall RegisterButton, [window], 13, button5, 90 + 1, 90 * 4 - 10
+	stdcall RegisterButton, [window], 14, button6, 90 * 2 + 1, 90 * 4 - 10
+	stdcall RegisterButton, [window], 15, buttonMinus, 90 * 3 + 1, 90 * 4 - 10
+	stdcall RegisterButton, [window], 16, button1, 0 + 1, 90 * 5 - 10
+	stdcall RegisterButton, [window], 17, button2, 90 + 1, 90 * 5 - 10
+	stdcall RegisterButton, [window], 18, button3, 90 * 2 + 1, 90 * 5 - 10
+	stdcall RegisterButton, [window], 19, buttonPlus, 90 * 3 + 1, 90 * 5 - 10
+	stdcall RegisterButton, [window], 20, buttonUnaryMinus, 0 + 1, 90 * 6 - 10
+	stdcall RegisterButton, [window], 21, button0, 90 + 1, 90 * 6 - 10
+	stdcall RegisterButtonD, [window], 22, buttonDot, 90 * 2 + 1, 90 * 6 - 10
+	stdcall RegisterButton, [window], 23, buttonEquals, 90 * 3 + 1, 90 * 6 - 10
 
 	jmp .finish
 
@@ -106,7 +108,7 @@ proc WindowProc uses ebx esi edi, window, msg, wParam, lParam
 @@:
 	cmp [buttonId], 2 ; clear
 	jne @F
-	invoke SetWindowText, [field], empty
+	invoke SetWindowTextA, [field], empty
 	; TODO
 	jmp .finish
 @@:
@@ -230,7 +232,7 @@ endp
 
 ; TODO
 proc CalculateWrapper
-	invoke GetWindowText, [field], buffer, 255
+	invoke GetWindowTextA, [field], buffer, 255
 	cmp [storagePresence0], 1
 	jne .resetData
 	cmp [storagePresence1], 1
@@ -309,7 +311,7 @@ proc CalculateWrapper
 
 	stdcall ConvertResIntToASCII
 
-	invoke SetWindowText, [field], buffer
+	invoke SetWindowTextA, [field], buffer
 	jmp .resetData
 
 .doMinus:
@@ -323,7 +325,7 @@ proc CalculateWrapper
 
 	stdcall ConvertResIntToASCII
 
-	invoke SetWindowText, [field], buffer
+	invoke SetWindowTextA, [field], buffer
 	jmp .resetData
 
 .doMultiple:
@@ -337,7 +339,7 @@ proc CalculateWrapper
 
 	stdcall ConvertResIntToASCII
 
-	invoke SetWindowText, [field], buffer
+	invoke SetWindowTextA, [field], buffer
 	jmp .resetData
 
 .doDivide:
@@ -351,7 +353,7 @@ proc CalculateWrapper
 
 	stdcall ConvertResIntToASCII
 
-	invoke SetWindowText, [field], buffer
+	invoke SetWindowTextA, [field], buffer
 	jmp .resetData
 
 .oneOperandAction:
@@ -384,7 +386,7 @@ proc CalculateWrapper
 
 	stdcall ConvertResIntToASCII
 
-	invoke SetWindowText, [field], buffer
+	invoke SetWindowTextA, [field], buffer
 	jmp .resetData
 
 .doFactorial:
@@ -405,7 +407,7 @@ proc CalculateWrapper
 
 	stdcall ConvertResIntToASCII
 
-	invoke SetWindowText, [field], buffer
+	invoke SetWindowTextA, [field], buffer
 	jmp .resetData
 
 .doInverse:
@@ -424,7 +426,7 @@ proc CalculateWrapper
 endp
 
 proc PushSymbolWrapper uses eax, symbol
-	invoke GetWindowText, [field], buffer, 255
+	invoke GetWindowTextA, [field], buffer, 255
 
 	invoke lstrcmp, [symbol], buttonPValue
 	cmp eax, 0
@@ -491,17 +493,17 @@ proc PushSymbolWrapper uses eax, symbol
 endp
 
 proc PushSymbol uses eax, symbol
-	invoke GetWindowText, [field], buffer, 255
+	invoke GetWindowTextA, [field], buffer, 255
 	invoke lstrcmp, buffer, error
 	cmp eax, 0
 	jne .concat
 
-	invoke SetWindowText, [field], [symbol]
+	invoke SetWindowTextA, [field], [symbol]
 	jmp .finish
 
 .concat:
 	invoke lstrcat, buffer, [symbol]
-	invoke SetWindowText, [field], buffer
+	invoke SetWindowTextA, [field], buffer
 
 .finish:
 	ret
@@ -535,7 +537,7 @@ proc PushItem, item
 endp
 
 proc PushOperation, operation
-	invoke GetWindowText, [field], buffer, 255
+	invoke GetWindowTextA, [field], buffer, 255
 	cmp [storagePresence0], 0
 	jne .error
 
@@ -548,31 +550,31 @@ proc PushOperation, operation
 .pushAsIs:
 	stdcall PushItem, buffer
 	stdcall PushItem, [operation]
-	invoke SetWindowText, [field], empty
+	invoke SetWindowTextA, [field], empty
 	jmp .finish
 
 .error:
 	mov [storagePresence0], 0
 	mov [storagePresence1], 0
 	mov [storagePresence2], 0
-	invoke SetWindowText, [field], error
+	invoke SetWindowTextA, [field], error
 
 .finish:
 	ret
 endp
 
 proc RegisterButtonD, window, id, text, gridX, gridY
-	invoke CreateWindowEx, WS_EX_CLIENTEDGE, buttonClassName, [text], WS_TABSTOP + WS_VISIBLE + WS_CHILD + WS_DISABLED, [gridX], [gridY], 60, 60, [window], [id], NULL, NULL
+	invoke CreateWindowExA, WS_EX_CLIENTEDGE, buttonClassName, [text], WS_TABSTOP + WS_VISIBLE + WS_CHILD + WS_DISABLED, [gridX], [gridY], 90, 90, [window], [id], NULL, NULL
 	ret
 endp
 
 proc RegisterButton, window, id, text, gridX, gridY
-	invoke CreateWindowEx, WS_EX_CLIENTEDGE, buttonClassName, [text], WS_TABSTOP + WS_VISIBLE + WS_CHILD, [gridX], [gridY], 60, 60, [window], [id], NULL, NULL
+	invoke CreateWindowExA, WS_EX_CLIENTEDGE, buttonClassName, [text], WS_TABSTOP + WS_VISIBLE + WS_CHILD, [gridX], [gridY], 90, 90, [window], [id], NULL, NULL
 	ret
 endp
 
 proc RegisterField uses eax, window
-	invoke CreateWindowEx, WS_EX_CLIENTEDGE, fieldClassName, fieldText, WS_TABSTOP + WS_VISIBLE + WS_CHILD, 1, 1, 239, 48, [window], NULL, NULL, NULL
+	invoke CreateWindowExA, WS_EX_CLIENTEDGE, fieldClassName, fieldText, WS_TABSTOP + WS_VISIBLE + WS_CHILD, 1, 1, 90 * 4 - 2, 90, [window], NULL, NULL, NULL
 	mov [field], eax
 	ret
 endp
@@ -610,8 +612,8 @@ section '.data' data readable writeable
 
 	screenWidth dd 0
 	screenHeight dd 0
-	windowWidth dd 248
-	windowHeight dd 440
+	windowWidth dd 90 * 4 + 6
+	windowHeight dd 90 * 7 + 24
 	windowX dd 0
 	windowY dd 0
 
@@ -684,5 +686,23 @@ section '.idata' import data readable writeable
 
 	library kernel32, 'KERNEL32.DLL', user32, 'USER32.DLL'
 
-	include 'api\kernel32.inc'
-	include 'api\user32.inc'
+	import kernel32, \
+		ExitProcess, 'ExitProcess', \
+		lstrcmp, 'lstrcmp', \
+		lstrcat, 'lstrcat', \
+		lstrlen, 'lstrlen', \
+		lstrcpy, 'lstrcpy'
+
+	import user32, \
+		SetProcessDPIAware, 'SetProcessDPIAware', \
+		RegisterClassA, 'RegisterClassA', \
+		GetSystemMetrics, 'GetSystemMetrics', \
+		CreateWindowExA, 'CreateWindowExA', \
+		GetMessageA, 'GetMessageA', \
+		TranslateMessage, 'TranslateMessage', \
+		DispatchMessageA, 'DispatchMessageA', \
+		DefWindowProcA, 'DefWindowProcA', \
+		SetWindowTextA, 'SetWindowTextA', \
+		DestroyWindow, 'DestroyWindow', \
+		PostQuitMessage, 'PostQuitMessage', \
+		GetWindowTextA, 'GetWindowTextA'
